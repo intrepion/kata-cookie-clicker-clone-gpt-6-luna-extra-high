@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7edda" />
+    <meta name="description" content="A cozy little cookie bakery. Click, bake, and build your way to cookie fame." />
+    <title>Cookie & Crumb — a tiny cookie bakery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Cookie and Crumb home">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>cookie <b>&</b> crumb</span>
+        </a>
+        <div class="bakery-status"><span class="status-dot"></span> BAKERY OPEN <span class="status-divider">·</span> DAY <span id="day-count">01</span></div>
+        <button class="icon-button sound-toggle" id="sound-toggle" type="button" aria-label="Turn sound on" title="Toggle sound"><span id="sound-icon">♫</span></button>
+      </header>
+
+      <main id="top" class="game-layout">
+        <aside class="left-rail" aria-label="Bakery stats">
+          <div class="rail-label">YOUR BAKERY</div>
+          <div class="stat-card total-card">
+            <span class="stat-icon" aria-hidden="true">◉</span>
+            <div><span class="stat-label">COOKIES BAKED</span><strong id="lifetime-count">0</strong></div>
+            <span class="stat-caption">all time</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon stat-icon-small" aria-hidden="true">⌁</span>
+            <div><span class="stat-label">PER SECOND</span><strong id="cps-count">0</strong></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon stat-icon-small" aria-hidden="true">✦</span>
+            <div><span class="stat-label">PER CLICK</span><strong id="click-count">1</strong></div>
+          </div>
+
+          <section class="milestone-card" aria-label="Next bakery milestone">
+            <div class="milestone-heading"><span>UP NEXT</span><span id="milestone-percent">0%</span></div>
+            <strong id="milestone-name">First dozen</strong>
+            <p id="milestone-copy">Bake 12 cookies to earn your first little star.</p>
+            <div class="progress-track"><div id="milestone-progress" class="progress-fill"></div></div>
+            <div class="progress-numbers"><span id="milestone-current">0</span><span id="milestone-target">12 cookies</span></div>
+          </section>
+
+          <section class="achievement-list" aria-label="Bakery badges">
+            <div class="rail-label">LITTLE WINS</div>
+            <div class="badge-row" id="badge-row"></div>
+          </section>
+        </aside>
+
+        <section class="bakery-stage" aria-label="Cookie bakery">
+          <div class="stage-heading">
+            <div><p class="eyebrow">FRESH FROM THE OVEN</p><h1>A little more <em>cookie?</em></h1></div>
+            <span class="oven-tag"><span class="oven-flame">♨</span> OVEN WARM</span>
+          </div>
+
+          <div class="scene">
+            <div class="scene-sun" aria-hidden="true"></div>
+            <div class="spark spark-one" aria-hidden="true">✳</div><div class="spark spark-two" aria-hidden="true">✧</div><div class="spark spark-three" aria-hidden="true">✦</div>
+            <div class="steam steam-one" aria-hidden="true"></div><div class="steam steam-two" aria-hidden="true"></div>
+            <button id="cookie-button" class="cookie-button" type="button" aria-label="Bake one cookie">
+              <svg class="big-cookie" viewBox="0 0 320 320" role="img" aria-label="Chocolate chip cookie">
+                <defs>
+                  <radialGradient id="cookieGrad" cx="36%" cy="28%" r="75%"><stop offset="0" stop-color="#f7cb79"/><stop offset=".72" stop-color="#e9a84f"/><stop offset="1" stop-color="#c77d39"/></radialGradient>
+                  <filter id="cookieShadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#71401e" flood-opacity=".25"/></filter>
+                </defs>
+                <g filter="url(#cookieShadow)">
+                  <path d="M273 164c8 57-34 112-93 123-54 10-114-17-137-66-25-53-6-120 44-151 41-26 95-26 135 1 31 21 46 54 51 93Z" fill="#b96c32" opacity=".43" transform="translate(2 5)"/>
+                  <path d="M270 158c8 57-34 112-93 123-54 10-114-17-137-66-25-53-6-120 44-151 41-26 95-26 135 1 31 21 46 54 51 93Z" fill="url(#cookieGrad)" stroke="#d18b42" stroke-width="5"/>
+                  <path d="M83 94c21-19 49-28 77-24M63 129c4-9 9-17 15-24M229 98c11 12 19 26 24 42M81 233c17 17 40 27 64 30" fill="none" stroke="#ffdf9e" stroke-linecap="round" stroke-width="8" opacity=".8"/>
+                  <g fill="#63371f">
+                    <ellipse cx="112" cy="105" rx="11" ry="8" transform="rotate(-26 112 105)"/><ellipse cx="169" cy="91" rx="12" ry="9" transform="rotate(18 169 91)"/>
+                    <ellipse cx="217" cy="122" rx="10" ry="8" transform="rotate(-28 217 122)"/><ellipse cx="83" cy="158" rx="12" ry="9" transform="rotate(18 83 158)"/>
+                    <ellipse cx="143" cy="142" rx="11" ry="8" transform="rotate(-12 143 142)"/><ellipse cx="191" cy="169" rx="12" ry="9" transform="rotate(22 191 169)"/>
+                    <ellipse cx="108" cy="207" rx="11" ry="8" transform="rotate(24 108 207)"/><ellipse cx="160" cy="222" rx="12" ry="9" transform="rotate(-18 160 222)"/>
+                    <ellipse cx="221" cy="211" rx="10" ry="8" transform="rotate(16 221 211)"/><ellipse cx="239" cy="165" rx="8" ry="7"/>
+                  </g>
+                  <g fill="#8d532f" opacity=".65"><circle cx="133" cy="116" r="3"/><circle cx="202" cy="99" r="3"/><circle cx="99" cy="181" r="3"/><circle cx="180" cy="197" r="3"/><circle cx="133" cy="249" r="3"/></g>
+                </g>
+              </svg>
+            </button>
+            <div class="scene-table" aria-hidden="true"></div>
+            <div class="scene-note"><span class="note-star">✳</span> made with a little love <span class="note-star">✳</span></div>
+            <div id="golden-cookie" class="golden-cookie-wrap" hidden>
+              <button class="golden-cookie" type="button" aria-label="Collect the golden cookie!"><span>✦</span><small>LUCKY!</small></button>
+            </div>
+          </div>
+
+          <div class="bake-hint"><span class="hint-key">CLICK</span><span>your cookie to bake</span><span class="hint-divider">·</span><span>or press <kbd>space</kbd></span></div>
+
+          <div class="stage-bottom">
+            <div class="quote-card"><span class="quote-mark">“</span><p id="bakery-quote">The secret ingredient is always one more cookie.</p><span class="quote-credit">— GRANDMA</span></div>
+            <div class="oven-card"><div class="oven-window"><span class="oven-cookie">●</span></div><div><span class="stat-label">IN THE OVEN</span><strong id="oven-status">Something sweet</strong></div><span class="oven-heat">🔥</span></div>
+          </div>
+        </section>
+
+        <aside class="shop-panel" aria-label="Bakery shop">
+          <div class="shop-top"><div><p class="eyebrow">GROW YOUR EMPIRE</p><h2>The shop</h2></div><span class="shop-sparkle">✳</span></div>
+          <div class="shop-tabs" role="tablist" aria-label="Shop categories">
+            <button class="shop-tab active" type="button" role="tab" aria-selected="true" data-tab="buildings">BUILDINGS</button>
+            <button class="shop-tab" type="button" role="tab" aria-selected="false" data-tab="upgrades">UPGRADES <span id="upgrade-dot" class="new-dot" hidden></span></button>
+          </div>
+          <div class="buy-controls" aria-label="Purchase quantity">
+            <span>BUY</span>
+            <div class="buy-options"><button class="buy-option active" type="button" data-quantity="1">1</button><button class="buy-option" type="button" data-quantity="10">10</button><button class="buy-option" type="button" data-quantity="100">100</button></div>
+          </div>
+          <div id="shop-list" class="shop-list" role="tabpanel" aria-label="Available buildings"></div>
+          <div id="empty-upgrades" class="empty-upgrades" hidden><span class="empty-icon">✧</span><strong>Good things are rising</strong><p>Keep baking. Your next upgrade is just around the corner.</p><div class="tiny-cookie-row">● ● ●</div></div>
+          <div class="shop-footer"><span>TIP: NEW RECIPES APPEAR AS YOU BAKE</span><button id="reset-button" type="button" title="Start a new bakery">↻</button></div>
+        </aside>
+      </main>
+
+      <footer class="page-footer"><span>COOKIE & CRUMB BAKERY</span><span>SMALL BATCH. BIG DREAMS. <span class="footer-heart">♥</span></span><span id="save-status">SAVED LOCALLY</span></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="game.js"></script>
+  </body>
+</html>
