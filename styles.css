@@ -32,6 +32,11 @@ button { color: inherit; font: inherit; }
 .rail-label, .eyebrow { margin: 0; color: #ab8b68; font: 10px var(--mono); letter-spacing: .12em; }
 .left-rail { padding-top: 8px; }
 .left-rail > .rail-label { margin: 0 0 15px 2px; }
+.wallet-card { display: flex; align-items: center; gap: 11px; margin-bottom: 8px; padding: 12px 14px; border: 1px solid #ebd6ad; border-radius: 12px; background: #fff3da; }
+.wallet-cookie-icon { display: grid; flex: none; place-items: center; width: 35px; height: 35px; border-radius: 50%; background: #f1d69f; color: #be7139; font-size: 17px; text-shadow: 0 1px #ffecc1; }
+.wallet-copy { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.wallet-copy .stat-label { color: #a4875d; font-size: 8px; }
+.wallet-copy strong { overflow: hidden; color: #5d4128; font: 700 22px var(--serif); text-overflow: ellipsis; white-space: nowrap; }
 .stat-card { position: relative; min-height: 72px; display: flex; align-items: center; gap: 12px; padding: 14px 15px; background: var(--cream); border: 1px solid var(--line); border-bottom: 0; }
 .stat-card:nth-of-type(2) { border-radius: 12px 12px 0 0; }
 .stat-card:nth-of-type(4) { border-bottom: 1px solid var(--line); border-radius: 0 0 12px 12px; }
@@ -113,6 +118,8 @@ h2 { font-size: 24px; }
 .buy-options { display: flex; gap: 3px; padding: 3px; border: 1px solid #eadfcb; border-radius: 8px; background: #f8f0e2; }
 .buy-option { min-width: 32px; padding: 5px 7px; border: 0; border-radius: 5px; background: transparent; color: #a48e72; cursor: pointer; font: 9px var(--mono); }
 .buy-option.active { background: #fffaf0; color: #a75028; box-shadow: 0 1px 3px #6b4b2a17; }
+.spend-hint { margin: -4px 17px 10px; padding: 8px 9px; border-radius: 7px; background: #f5eddf; color: #94816a; font-size: 9px; line-height: 1.45; }
+.spend-hint b { color: #a75028; font: 500 8px var(--mono); letter-spacing: .05em; }
 .shop-list { padding: 0 10px 10px; }
 .shop-item { position: relative; display: grid; grid-template-columns: 43px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 70px; margin: 0 0 5px; padding: 9px 10px; border: 1px solid #eee2d0; border-radius: 10px; background: #fffdf8; transition: border-color .15s, background .15s, transform .15s; }
 .shop-item.affordable:hover { transform: translateY(-1px); border-color: #ddbd8d; background: #fff9e9; }
@@ -121,19 +128,28 @@ h2 { font-size: 24px; }
 .building-info { min-width: 0; }
 .building-info strong { display: block; overflow: hidden; color: #5b4634; font: 700 12px var(--serif); text-overflow: ellipsis; white-space: nowrap; }
 .building-info span { display: block; margin-top: 3px; overflow: hidden; color: #a3927c; font: 9px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
-.building-buy { display: grid; justify-items: end; gap: 5px; min-width: 52px; }
-.building-price { display: flex; align-items: center; gap: 4px; color: #a36b3b; font: 9px var(--mono); white-space: nowrap; }
+.building-info .building-owned { display: block; margin-top: 4px; color: #b09c80; font: 8px var(--mono); letter-spacing: .04em; }
+.building-buy { display: grid; justify-items: end; gap: 2px; min-width: 93px; padding: 6px 8px; border: 1px solid #e5cfaa; border-radius: 8px; background: #fbf1df; color: #8b613e; text-align: right; cursor: pointer; }
+.shop-item.affordable .building-buy { border-color: #dfbd82; background: #f7e3bb; color: #754a2d; }
+.shop-item.affordable .building-buy:hover { border-color: #cc9650; background: #f2d49f; }
+.building-buy:disabled { border-color: #eee4d5; background: #f8f4ec; color: #a69b8a; cursor: not-allowed; }
+.buy-action-label { color: inherit; font: 500 8px var(--mono); letter-spacing: .05em; }
+.building-price { display: flex; align-items: center; gap: 4px; color: inherit; font: 10px var(--mono); white-space: nowrap; }
 .price-cookie { color: #d38742; font-size: 11px; }
-.building-count { display: grid; place-items: center; min-width: 22px; height: 20px; padding: 0 5px; border-radius: 7px; background: #f1e7d5; color: #987a59; font: 9px var(--mono); }
-.buy-building { border: 0; background: none; text-align: right; cursor: pointer; }
-.shop-item.locked .buy-building { cursor: default; }
+.buy-status { color: #a08c72; font: 7px var(--mono); letter-spacing: .03em; white-space: nowrap; }
+.shop-item.affordable .buy-status { color: #6d8150; }
+.building-buy:disabled .buy-status { color: #ad7958; }
+.building-locked-label { justify-self: end; color: #ae9a7d; font: 8px var(--mono); letter-spacing: .05em; }
 .upgrade-card { display: grid; grid-template-columns: 43px minmax(0, 1fr); gap: 10px; align-items: center; width: 100%; min-height: 67px; margin-bottom: 6px; padding: 9px 10px; border: 1px solid #eadac0; border-radius: 10px; background: #fffbf1; text-align: left; cursor: pointer; }
 .upgrade-card:hover:not(:disabled) { background: #fff2d2; }
-.upgrade-card:disabled { cursor: default; opacity: .55; }
+.upgrade-card:disabled { background: #f8f4ec; cursor: not-allowed; opacity: 1; }
 .upgrade-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 9px; background: #f8e9c4; font-size: 21px; }
 .upgrade-info { min-width: 0; }
 .upgrade-info strong { display: block; color: #5b4634; font: 700 12px var(--serif); }
 .upgrade-info span { display: block; margin-top: 4px; color: #a3927c; font: 9px var(--mono); }
+.upgrade-info .upgrade-buy-status { display: block; margin-top: 3px; color: #987a59; font: 8px var(--mono); }
+.upgrade-card:not(:disabled) .upgrade-buy-status { color: #6d8150; }
+.upgrade-card:disabled .upgrade-buy-status { color: #ad7958; }
 .empty-upgrades { flex: 1; display: grid; align-content: center; justify-items: center; padding: 15px 35px 45px; color: #9b8977; text-align: center; }
 .empty-upgrades[hidden] { display: none; }
 .empty-icon { color: #d6a85b; font-size: 39px; }
@@ -163,11 +179,12 @@ h2 { font-size: 24px; }
   .game-layout { grid-template-columns: 1fr 280px; gap: 18px; }
   .left-rail { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 8px; padding: 0; }
   .left-rail > .rail-label { grid-column: 1 / -1; }
+  .wallet-card { grid-column: 1 / -1; }
   .stat-card { min-height: 70px; border: 1px solid var(--line) !important; border-radius: 10px !important; padding: 11px; }
   .total-card { min-height: 70px; }
   .stat-caption { display: none; }
   .milestone-card { grid-column: 1 / 3; margin-top: 10px; }
-  .achievement-list { grid-column: 3; grid-row: 3; margin-top: 10px; }
+  .achievement-list { grid-column: 3; margin-top: 10px; }
   .badge-row { flex-wrap: wrap; }
   .bakery-stage { grid-column: 1; grid-row: 2; }
   .shop-panel { grid-column: 2; grid-row: 2; }
@@ -181,6 +198,7 @@ h2 { font-size: 24px; }
   .game-layout { display: flex; flex-direction: column; gap: 18px; padding-top: 19px; }
   .left-rail { order: 0; grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .left-rail > .rail-label { margin-bottom: 1px; }
+  .wallet-card { min-height: 67px; margin-bottom: 0; }
   .stat-card { min-height: 66px; display: block; padding: 9px; }
   .stat-card > .stat-icon { display: none; }
   .stat-card > div { gap: 5px; }
@@ -213,9 +231,11 @@ h2 { font-size: 24px; }
   .building-icon { width: 34px; height: 34px; font-size: 18px; }
   .building-info strong { font-size: 11px; }
   .building-info span { font-size: 8px; }
-  .building-buy { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; width: 100%; padding-top: 5px; border-top: 1px solid #f0e8da; }
-  .building-price { font-size: 8px; }
-  .building-count { height: 17px; min-width: 19px; }
+  .building-info .building-owned { font-size: 7px; }
+  .building-buy { grid-column: 1 / -1; grid-template-columns: 1fr auto; align-items: center; justify-items: start; width: 100%; padding: 6px 7px; }
+  .buy-action-label { grid-column: 1; grid-row: 1; }
+  .building-price { grid-column: 2; grid-row: 1 / span 2; font-size: 8px; }
+  .buy-status { grid-column: 1; grid-row: 2; font-size: 6px; }
   .upgrade-card { min-height: 64px; padding: 7px; }
   .upgrade-icon { width: 34px; height: 34px; font-size: 17px; }
   .upgrade-info strong { font-size: 11px; }

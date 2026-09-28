@@ -25,6 +25,10 @@
       <main id="top" class="game-layout">
         <aside class="left-rail" aria-label="Bakery stats">
           <div class="rail-label">YOUR BAKERY</div>
+          <section class="wallet-card" aria-label="Cookies available to spend">
+            <span class="wallet-cookie-icon" aria-hidden="true">●</span>
+            <div class="wallet-copy"><span class="stat-label">IN YOUR JAR · READY TO SPEND</span><strong id="current-count">0</strong></div>
+          </section>
           <div class="stat-card total-card">
             <span class="stat-icon" aria-hidden="true">◉</span>
             <div><span class="stat-label">COOKIES BAKED</span><strong id="lifetime-count">0</strong></div>
@@ -105,10 +109,11 @@
             <button class="shop-tab active" type="button" role="tab" aria-selected="true" data-tab="buildings">BUILDINGS</button>
             <button class="shop-tab" type="button" role="tab" aria-selected="false" data-tab="upgrades">UPGRADES <span id="upgrade-dot" class="new-dot" hidden></span></button>
           </div>
-          <div class="buy-controls" aria-label="Purchase quantity">
+          <div id="buy-controls" class="buy-controls" aria-label="Purchase quantity">
             <span>BUY</span>
             <div class="buy-options"><button class="buy-option active" type="button" data-quantity="1">1</button><button class="buy-option" type="button" data-quantity="10">10</button><button class="buy-option" type="button" data-quantity="100">100</button></div>
           </div>
+          <p id="spend-hint" class="spend-hint">Choose an amount, then press <b>BUY</b>. 100 buys as many as your jar can afford, up to 100.</p>
           <div id="shop-list" class="shop-list" role="tabpanel" aria-label="Available buildings"></div>
           <div id="empty-upgrades" class="empty-upgrades" hidden><span class="empty-icon">✧</span><strong>Good things are rising</strong><p>Keep baking. Your next upgrade is just around the corner.</p><div class="tiny-cookie-row">● ● ●</div></div>
           <div class="shop-footer"><span>TIP: NEW RECIPES APPEAR AS YOU BAKE</span><button id="reset-button" type="button" title="Start a new bakery">↻</button></div>

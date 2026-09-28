@@ -136,6 +136,11 @@
     const amount = value / base;
     return `${amount.toFixed(Math.abs(amount) < 10 ? 2 : 1).replace(/0+$/, "").replace(/\.$/, "")}${suffix}`;
   }
+  function fmtBalance(value) {
+    if (!Number.isFinite(value)) return "∞";
+    if (value >= 1e15) return fmt(value);
+    return Math.floor(value).toLocaleString("en-US");
+  }
   function unlocked(building) { return state.cookiesBaked >= building.unlock; }
   function showToast(message) {
     const node = $("toast");
@@ -214,14 +219,19 @@
     visible.push(...buildings.filter(b => !unlocked(b)).slice(0, 2));
     for (const building of visible) {
       const isUnlocked = unlocked(building);
-      const count = quantity === 100 ? Math.max(1, affordableBundle(building)) : quantity;
+      const selectedCount = quantity === 100 ? affordableBundle(building) : quantity;
+      const count = Math.max(1, selectedCount);
       const price = bundleCost(building, count);
-      const affordable = state.cookies >= price;
+      const affordable = selectedCount > 0 && state.cookies >= price;
       const row = document.createElement("div");
       row.className = `shop-item${affordable && isUnlocked ? " affordable" : ""}${isUnlocked ? "" : " locked"}`;
       const displayName = isUnlocked ? building.name : "???";
-      row.innerHTML = `<span class="building-icon" aria-hidden="true">${isUnlocked ? building.icon : "🔒"}</span><div class="building-info"><strong>${displayName}</strong><span>${isUnlocked ? `${fmt(building.cps * multiplierFor(building.id))} cookies / sec` : `Bake ${fmt(building.unlock)} to unlock`}</span></div><button class="buy-building building-buy" type="button" aria-label="Buy ${displayName}" ${!isUnlocked || !affordable ? "disabled" : ""}><span class="building-price"><span class="price-cookie">●</span>${fmt(price)}</span><span class="building-count">${state.owned[building.id]}</span></button>`;
-      row.querySelector("button").addEventListener("click", () => buyBuilding(building.id));
+      const buyLabel = quantity === 100 && selectedCount === 0 ? "BUY UP TO 100" : `BUY ×${selectedCount || quantity}`;
+      const status = !isUnlocked ? "LOCKED" : affordable ? "READY" : `NEED ${fmt(price - state.cookies)} MORE`;
+      const actionLabel = isUnlocked ? `<button class="buy-building" type="button" aria-label="${affordable ? `Buy ${selectedCount} ${building.name} for ${fmt(price)} cookies` : `Cannot afford ${building.name}; need ${fmt(price - state.cookies)} more cookies`}" title="You have ${fmtBalance(state.cookies)} cookies" ${!affordable ? "disabled" : ""}><span class="buy-action-label">${buyLabel}</span><span class="building-price"><span class="price-cookie">●</span>${fmt(price)}</span><span class="buy-status">${status}</span></button>` : `<span class="building-locked-label">LOCKED</span>`;
+      row.innerHTML = `<span class="building-icon" aria-hidden="true">${isUnlocked ? building.icon : "🔒"}</span><div class="building-info"><strong>${displayName}</strong><span>${isUnlocked ? `${fmt(building.cps * multiplierFor(building.id))} cookies / sec` : `Bake ${fmt(building.unlock)} cookies to unlock`}</span><small class="building-owned">${isUnlocked ? `OWNED ${state.owned[building.id]}` : "NOT OPEN YET"}</small></div>${actionLabel}`;
+      const buyButton = row.querySelector(".buy-building");
+      if (buyButton) buyButton.addEventListener("click", () => buyBuilding(building.id));
       shopList.append(row);
     }
   }
@@ -230,12 +240,16 @@
     const available = upgrades.filter(u => !state.boughtUpgrades.includes(u.id) && u.unlock(state));
     $("empty-upgrades").hidden = available.length > 0;
     $("upgrade-dot").hidden = available.length === 0;
+    $("spend-hint").textContent = available.length
+      ? "Click an affordable upgrade to buy it. Upgrades improve your clicks or cookie production."
+      : "No upgrades are ready yet. Keep baking to unlock one; your cookies stay available in the jar.";
     for (const upgrade of available) {
       const button = document.createElement("button");
       button.className = "upgrade-card";
       button.type = "button";
       button.disabled = state.cookies < upgrade.cost;
-      button.innerHTML = `<span class="upgrade-icon" aria-hidden="true">${upgrade.icon}</span><span class="upgrade-info"><strong>${upgrade.name}</strong><span>${upgrade.description} · ● ${fmt(upgrade.cost)}</span></span>`;
+      const status = button.disabled ? `NEED ${fmt(upgrade.cost - state.cookies)} MORE` : "READY TO BUY";
+      button.innerHTML = `<span class="upgrade-icon" aria-hidden="true">${upgrade.icon}</span><span class="upgrade-info"><strong>${upgrade.name}</strong><span>${upgrade.description}</span><small class="upgrade-buy-status">${status} · COST ● ${fmt(upgrade.cost)}</small></span>`;
       button.addEventListener("click", () => buyUpgrade(upgrade.id));
       shopList.append(button);
     }
@@ -267,6 +281,7 @@
   function render() {
     const now = Date.now();
     $("lifetime-count").textContent = fmt(state.cookiesBaked);
+    $("current-count").textContent = fmtBalance(state.cookies);
     $("cps-count").textContent = fmt(cps());
     $("click-count").textContent = fmt(clickPower());
     $("upgrade-dot").hidden = !upgrades.some(u => !state.boughtUpgrades.includes(u.id) && u.unlock(state));
@@ -322,6 +337,10 @@
       button.setAttribute("aria-selected", String(active));
     });
     $("shop-list").setAttribute("aria-label", tab === "buildings" ? "Available buildings" : "Available upgrades");
+    $("buy-controls").hidden = tab !== "buildings";
+    $("spend-hint").textContent = tab === "buildings"
+      ? "Choose an amount, then press BUY. 100 buys as many as your jar can afford, up to 100."
+      : "Click an affordable upgrade to buy it. Upgrades improve your clicks or cookie production.";
     if (tab === "upgrades") renderUpgrades(); else { $("empty-upgrades").hidden = true; renderBuildings(); }
   }
   function resetGame() {
