@@ -1,5 +1,9 @@
 # Cookie & Crumb
 
+## Play online
+
+[Play Cookie & Crumb](https://intrepion.github.io/kata-cookie-clicker-clone-gpt-6-luna-extra-high/) — free, playable in your browser.
+
 A cozy, self-contained Cookie Clicker inspired browser game. Open `index.html` in a browser to play; there is no build step or dependency install.
 
 ## How to play
