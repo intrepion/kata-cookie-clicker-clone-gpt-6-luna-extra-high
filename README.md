@@ -14,3 +14,7 @@ A cozy, self-contained Cookie Clicker inspired browser game. Open `index.html` i
 - Your bakery saves in this browser automatically. Use the reset button in the shop to start over.
 
 The game is built with plain HTML, CSS, and JavaScript. Google Fonts are used when the browser is online; system font fallbacks keep the game usable offline.
+
+## Arcade metadata
+
+See [docs/arcade-metadata.md](docs/arcade-metadata.md) for the game-owned manifest and screenshot provenance.
