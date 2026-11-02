@@ -1,6 +1,47 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "gameId": "kata-cookie-clicker-clone-gpt-6-luna-extra-high",
   "playUrl": "https://intrepion.github.io/kata-cookie-clicker-clone-gpt-6-luna-extra-high/",
-  "screenshots": []
+  "screenshots": [
+    {
+      "path": "arcade/screenshots/ci-20261102-01.jpg",
+      "sha256": "2cb5a18c178bcb9eb9988b4bd52665a5e0cda5b32462c5132055f97f8e88c253",
+      "alt": "Cookie & Crumb gameplay, view 1",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-01.png",
+        "sourceSha256": "1361d32fff3f64972442b371a8b9573b26cadf48605e697d14d848a5369db94e",
+        "captureCommit": "df5a41720ea02f146a1f53e5d7f914a56ebf9c5f",
+        "workflowRunId": "41378822320",
+        "inputHashes": {
+          "index.html": "b0f827f7fb409773bb6ed7263b8307f3048e44747fc6e8adf2e11ab91cd78c9f",
+          "styles.css": "da21f7ea459a28c8d0b779429807425ae59788a42a8729db06286d96064eea02",
+          "game.js": "f9e4f61bd839d48803c96be6d3a4dc30fa1ba895235741f4bbb319ce746ee971"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "ee136ab18c633ae4f8357e67224556d6a1b6b9e24cf60fce8aa3cb8cc721d506"
+      }
+    },
+    {
+      "path": "arcade/screenshots/ci-20261102-02.jpg",
+      "sha256": "e49f4ca79165dfac554a74bd9b0eba3cf9e5723baa30a8293bcab30f98da0d51",
+      "alt": "Cookie & Crumb gameplay, view 2",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-02.png",
+        "sourceSha256": "4659c2f1a4b4171276a4f73d839f9aa8c54a591abfbbe8d903e23c43bf232873",
+        "captureCommit": "df5a41720ea02f146a1f53e5d7f914a56ebf9c5f",
+        "workflowRunId": "41378822320",
+        "inputHashes": {
+          "index.html": "b0f827f7fb409773bb6ed7263b8307f3048e44747fc6e8adf2e11ab91cd78c9f",
+          "styles.css": "da21f7ea459a28c8d0b779429807425ae59788a42a8729db06286d96064eea02",
+          "game.js": "f9e4f61bd839d48803c96be6d3a4dc30fa1ba895235741f4bbb319ce746ee971"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "ee136ab18c633ae4f8357e67224556d6a1b6b9e24cf60fce8aa3cb8cc721d506"
+      }
+    }
+  ]
 }

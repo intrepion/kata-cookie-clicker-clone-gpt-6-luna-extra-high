@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "workflowCommit": "e32b4be486da323545b28bb331f799c2d3c1819d",
+  "sourceCommit": "df5a41720ea02f146a1f53e5d7f914a56ebf9c5f",
+  "runId": "41378822320",
+  "url": "http://127.0.0.1:4176/",
+  "inputs": {
+    "index.html": "b0f827f7fb409773bb6ed7263b8307f3048e44747fc6e8adf2e11ab91cd78c9f",
+    "styles.css": "da21f7ea459a28c8d0b779429807425ae59788a42a8729db06286d96064eea02",
+    "game.js": "f9e4f61bd839d48803c96be6d3a4dc30fa1ba895235741f4bbb319ce746ee971"
+  },
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "screenshots": [
+    "bakery-01.png",
+    "bakery-02.png"
+  ]
+}
